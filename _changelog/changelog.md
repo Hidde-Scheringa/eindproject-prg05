@@ -16,3 +16,12 @@ Mijn userstories zijn:
 ## ERD
 ### 1e iteratie
 [first version ERD](images/erd-prg05.png)
+
+#### Feedback 1e versie
+- Geen gebruik van hoofdletters.
+- Gebruik een tool voor die speciaal is voor het maken van ERDs (DrawSQL bijvoorbeeld)
+- Admin tabel is niet nodig die kan je aan de hand van rollen al meegeven in de users tabel.
+- En er mist een tabel waar je posts kan koppelen aan filtereisen.
+
+### 2e iteratie
+[second version ERD](images/ERD2prg05.png)
