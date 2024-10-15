@@ -2,3 +2,6 @@
 <x-logout-and-profilesetting>
 
 </x-logout-and-profilesetting>
+{{$game->name}}
+{{$game->playtime}}
+{{$game->publisher}}
