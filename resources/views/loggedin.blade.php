@@ -43,9 +43,11 @@
                 <td class="border border-gray-300 px-4 py-2">{{$game->playtime}} uur</td>
                 <td class="border border-gray-300 px-4 py-2">{{$game->publisher}}</td>
                 <td class="border border-gray-300 px-4 py-2">
-                    <div class="w-32 h-48 overflow-hidden">
-                        <img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}" class="w-full h-full object-cover" />
-                    </div>
+                   <a href="{{route('games.show', $game->id)}}">
+                        <div class="w-32 h-48 overflow-hidden">
+                            <img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}" class="w-full h-full object-cover" />
+                        </div>
+                   </a>
                 </td>
             </tr>
         @endforeach

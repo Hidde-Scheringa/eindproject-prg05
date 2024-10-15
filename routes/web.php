@@ -23,6 +23,7 @@ Route::get('/loggedin', function (){
 });
 
 Route::get('/loggedin', [GameController::class, 'index']);
+Route::get('/game/{id}',[GameController::class, 'show'])->name('games.show');
 
 
 require __DIR__.'/auth.php';
