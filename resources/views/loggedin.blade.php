@@ -34,7 +34,6 @@
             <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Speeltijd</th>
             <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Uitgever</th>
             <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Cover Afbeelding</th>
-            <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">ID</th>
         </tr>
         </thead>
         <tbody>
@@ -48,7 +47,6 @@
                         <img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}" class="w-full h-full object-cover" />
                     </div>
                 </td>
-                <td class="border border-gray-300 px-4 py-2">{{$game->id}}</td>
             </tr>
         @endforeach
         </tbody>
