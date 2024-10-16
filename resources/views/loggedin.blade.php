@@ -24,6 +24,7 @@
 
 <div class="text-center mt-6">
     <h2 class="text-gray-600">Welkom bij je dashboard! Hier kun je je spellen beheren.</h2>
+    <a href="{{ route('games.create') }}">greate game</a>
 </div>
 
 <div class="overflow-x-auto mt-4">

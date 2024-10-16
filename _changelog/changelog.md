@@ -25,3 +25,8 @@ Mijn userstories zijn:
 
 ### 2e iteratie
 [second version ERD](images/ERD2prg05.png)
+
+### 3e iteratie
+[third version ERD](images/3e-versie-erd.png)
+
+Dit is mijn laatste versie van mijn ERD.

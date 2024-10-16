@@ -1,12 +1,12 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [IndexController::class, 'index']);
+Route::get('/loggedin', [GameController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -18,12 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/loggedin', function (){
-   return view('loggedin');
-});
 
-Route::get('/loggedin', [GameController::class, 'index']);
-Route::get('/game/{id}',[GameController::class, 'show'])->name('games.show');
+
+Route::resource('games', GameController::class);
+
 
 
 require __DIR__.'/auth.php';
