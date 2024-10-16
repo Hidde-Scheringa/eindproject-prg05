@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name',100);
             $table->text('cover_image');
             $table->string('publisher', 50);
-            $table->integer('review_id');
+
             $table->integer('user_id');
             $table->integer('total_playtime');
             $table->timestamps();

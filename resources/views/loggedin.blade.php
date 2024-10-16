@@ -32,7 +32,7 @@
         <thead>
         <tr class="bg-gray-100">
             <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Naam</th>
-            <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Speeltijd</th>
+{{--            <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Speeltijd</th>--}}
             <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Uitgever</th>
             <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Cover Afbeelding</th>
         </tr>
@@ -41,7 +41,7 @@
         @foreach ($games as $game)
             <tr class="hover:bg-gray-50">
                 <td class="border border-gray-300 px-4 py-2">{{$game->name}}</td>
-                <td class="border border-gray-300 px-4 py-2">{{$game->playtime}} uur</td>
+{{--                <td class="border border-gray-300 px-4 py-2">{{$game->playtime}} uur</td>--}}
                 <td class="border border-gray-300 px-4 py-2">{{$game->publisher}}</td>
                 <td class="border border-gray-300 px-4 py-2">
                    <a href="{{route('games.show', $game->id)}}">
