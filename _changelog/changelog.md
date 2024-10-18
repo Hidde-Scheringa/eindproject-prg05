@@ -48,3 +48,6 @@ Ik heb de database results ook in de home pagina weer gegeven, je kan hier allee
 Ik heb ook mijn database aangepast, ik heb wat kolommen weg gehaald en vervangen. Bijvoorbeeld user_id zodat ik deze kan koppelen aan de users database.
 Maar ik ook een total playtime kolom gemaakt. Als een niet ingelogde gebruiker de homepage ziet kan hij/zij zien welke spellen veel gespeeld worden.
 
+## Vrijdag 18-10-2024
+Migrations gemaakt voor alle databases uit de ERD. Hieruit moeten alleen nog connecties gemaakt worden tussen elke database.
+Deze verbindingen worden gedaan aan de hand van de ERD.
