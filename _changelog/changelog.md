@@ -51,3 +51,9 @@ Maar ik ook een total playtime kolom gemaakt. Als een niet ingelogde gebruiker d
 ## Vrijdag 18-10-2024
 Migrations gemaakt voor alle databases uit de ERD. Hieruit moeten alleen nog connecties gemaakt worden tussen elke database.
 Deze verbindingen worden gedaan aan de hand van de ERD.
+
+## Zondag 20-10-2024
+Ik heb een review pagina gemaakt. Je kan reviews maken en deze worden opgslagen in de reviews database. 
+Ik heb de users database gelinkt met de reviews database met een 1 op veel relatie.
+Elke gebruiker kan dus meerdere reviews geven, en deze worden opgeslagen onder de user_id kolom. Je kan alleen een review schrijven als je bent ingelogged.
+Ik moet nu alleen nog de reviews op de show pagina laten zien
