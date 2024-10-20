@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -22,6 +23,8 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('games', GameController::class);
 
+Route::get('{game}/review', [ReviewController::class, 'review'])->name('review');
+Route::post('{game}/review', [ReviewController::class, 'store'])->name('reviews.store');
 
 
 require __DIR__.'/auth.php';

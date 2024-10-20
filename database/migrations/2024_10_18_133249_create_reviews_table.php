@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigInteger('game_id');
             $table->string('review');
             $table->boolean('verified');
+            $table->timestamps();
         });
     }
 
