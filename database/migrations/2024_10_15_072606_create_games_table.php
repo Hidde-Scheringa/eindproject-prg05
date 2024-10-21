@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('cover_image');
             $table->string('publisher', 50);
 
-            $table->integer('user_id');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->integer('total_playtime');
             $table->timestamps();
         });

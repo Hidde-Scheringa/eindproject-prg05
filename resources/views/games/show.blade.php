@@ -11,3 +11,11 @@
 <img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}">
 <p>{{ $game->playtime }} uur</p>
 <p>{{$game->publisher}}</p>
+
+
+@foreach($reviews as $review)
+    <p>{{ $review->user->name }}</p>
+    <p>{{$review->review}}</p>
+@endforeach
+
+
