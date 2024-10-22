@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Review;
-use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
 
@@ -13,7 +13,8 @@ class GameController extends Controller implements HasMiddleware
     public static function middleware(): array
     {
         return [
-
+            'auth',
+           new Middleware('auth', except: ['show','index']),
         ];
     }
     public function index()
