@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Models\Game;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\EnsureTokenIsValid;
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/loggedin', [GameController::class, 'index']);
@@ -32,9 +33,9 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('games', GameController::class);
 
-Route::get('{game}/review', [ReviewController::class, 'review'])->name('review');
-Route::post('{game}/review', [ReviewController::class, 'store'])->name('reviews.store');
-Route::get('/admin-reviews', [AdminController::class, 'show'])->name('admin-reviews');
-Route::delete('/admin-reviews/{id}',[AdminController::class, 'destroy'])->name('admin-reviews.destroy');
+Route::get('{game}/review', [ReviewController::class, 'review'])->name('review')->middleware('auth');
+Route::post('{game}/review', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
+Route::get('/admin-reviews', [AdminController::class, 'show'])->name('admin-reviews')->middleware([EnsureTokenIsValid::class]);
+Route::delete('/admin-reviews/{id}',[AdminController::class, 'destroy'])->name('admin-reviews.destroy')->middleware([EnsureTokenIsValid::class]);
 
 require __DIR__.'/auth.php';
