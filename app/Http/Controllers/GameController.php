@@ -4,10 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Review;
+use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class GameController extends Controller
+class GameController extends Controller implements HasMiddleware
 {
+    public static function middleware(): array
+    {
+        return [
+
+        ];
+    }
     public function index()
     {
         $games = Game::all();
@@ -30,6 +38,11 @@ class GameController extends Controller
 
     public function store(Request $request){
 //        $request->validate();
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'publisher' => ['required', 'string', 'max:255'],
+            'cover_image' =>['required', 'string', 'max:1000']
+        ]);
 
         $game= new Game();
         $game->name = $request->input('name');

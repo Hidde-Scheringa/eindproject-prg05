@@ -1,21 +1,30 @@
-<!DOCTYPE html>
-<html lang="nl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Game Dashboard</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
+<x-html-head/>
 
-<h1>{{ $game->name }}</h1>
-<img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}">
-<p>{{ $game->playtime }} uur</p>
-<p>{{$game->publisher}}</p>
+<div class="bg-gray-100 min-h-screen py-10">
+    <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+        <h1 class="text-3xl font-bold text-center text-blue-600 mb-4">{{ $game->name }}</h1>
 
+        <!-- Cover image is now set to half-width -->
+        <img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}" class="w-1/2 h-auto mx-auto rounded-lg mb-4">
 
-@foreach($reviews as $review)
-    <p>{{ $review->user->name }}</p>
-    <p>{{$review->review}}</p>
-@endforeach
+        <p class="text-lg text-gray-700 mb-2">
+            Speeltijd: <span class="font-semibold text-blue-600">{{ $game->playtime }} uur</span>
+        </p>
+        <p class="text-lg text-gray-700 mb-4">
+            Uitgever: <span class="font-semibold text-blue-600">{{ $game->publisher }}</span>
+        </p>
 
+        <h2 class="text-2xl font-semibold text-gray-800 mb-3">Recensies</h2>
 
+        @foreach($reviews as $review)
+            <div class="border-b border-gray-300 mb-4 pb-4">
+                <p class="font-medium text-gray-800">{{ $review->user->name }}</p>
+                <p class="text-gray-600">{{ $review->review }}</p>
+            </div>
+        @endforeach
+
+        @if ($reviews->isEmpty())
+            <p class="text-gray-500">Geen recensies beschikbaar.</p>
+        @endif
+    </div>
+</div>

@@ -17,6 +17,9 @@ class ReviewController extends Controller
 
     public function store(Request $request, $id){
 //        $request->validate();
+        $request->validate([
+            'review' => ['required', 'string', 'max:1000'],
+        ]);
 
         $review= new Review();
         $review->user_id = auth()->user()->id;
