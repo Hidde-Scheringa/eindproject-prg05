@@ -18,8 +18,13 @@ class GameController extends Controller implements HasMiddleware
            new Middleware('auth', except: ['show','index']),
         ];
     }
-    public function index(Request $request)
+    public function handleDashboard(Request $request)
     {
+
+        if (Auth::user()->admin) {
+            return view('admin.dashboard');
+        }
+
         $gameQuery = Game::query();
         $gameQuery->where('verified', true);
         if ($request->filled('search')) {
@@ -30,15 +35,6 @@ class GameController extends Controller implements HasMiddleware
 
         $games = $gameQuery->get();
         return view('loggedin', compact('games'));
-    }
-
-    public function inlogHandler(){
-        $games = Game::where('verified', true)->get();
-        if (Auth::user()->admin){
-            return view('admin.dashboard');
-        } else{
-            return view('loggedin',['games' => $games]);
-        }
     }
     public function show($id){
         $game = Game::find($id);
