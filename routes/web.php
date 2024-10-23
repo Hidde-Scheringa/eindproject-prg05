@@ -14,7 +14,7 @@ Route::get('/', [IndexController::class, 'index']);
 Route::get('/loggedin', [GameController::class, 'index']);
 
 Route::get('/dashboard', function () {
-    $games = Game::all();
+    $games = Game::where('verified', true)->get();
     if (Auth::user()->admin){
 //    dd(Auth::user());
         return view('admin.dashboard');
@@ -37,5 +37,7 @@ Route::get('{game}/review', [ReviewController::class, 'review'])->name('review')
 Route::post('{game}/review', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
 Route::get('/admin-reviews', [AdminController::class, 'show'])->name('admin-reviews')->middleware([EnsureTokenIsValid::class]);
 Route::delete('/admin-reviews/{id}',[AdminController::class, 'destroy'])->name('admin-reviews.destroy')->middleware([EnsureTokenIsValid::class]);
+Route::get('/postmanager',[AdminController::class, 'gameManager'])->name('admin-toggle')->middleware([EnsureTokenIsValid::class]);
+Route::post('/postmanager/{id}',[AdminController::class, 'toggleVerified'])->name('admin.post-manager')->middleware([EnsureTokenIsValid::class]);
 
 require __DIR__.'/auth.php';

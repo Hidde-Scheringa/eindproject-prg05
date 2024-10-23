@@ -15,6 +15,7 @@
     </div>
 </div>
 <a href="{{route('admin-reviews')}}">Review manager</a>
+<a href="{{route('admin-toggle')}}">Post manager</a>
 
 
 

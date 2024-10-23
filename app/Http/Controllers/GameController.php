@@ -19,8 +19,7 @@ class GameController extends Controller implements HasMiddleware
     }
     public function index()
     {
-        $games = Game::all();
-
+        $games = Game::where('verified', true)->get();
         return view('loggedin', compact('games'));
     }
 

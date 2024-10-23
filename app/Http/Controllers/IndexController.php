@@ -7,9 +7,22 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $games = Game::all();
+        $gameQuery = Game::query();
+        $gameQuery->where('verified', true);
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+//            $gameQuery->where('name', 'like', '%' . $search . '%')
+//                ->orWhere('publisher', 'like', '%' . $search . '%');
+            $gameQuery->whereAny(['name', 'publisher'],'LIKE', "%$search%");
+        }
+
+
+        $games = $gameQuery->get();
+//        dd($games);
+
+//        $games = Game::where('verified', true)->get();
 
         return view('welcome', compact('games'));
     }

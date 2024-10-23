@@ -16,8 +16,20 @@ class AdminController extends Controller
         return view('admin.review', compact('review', 'users', 'games'));
     }
 
+    public function gameManager(){
+        $games = Game::all();
+        return view('admin.toggle', compact('games'));
+    }
+
+    public function toggleVerified($id){
+        $games = Game::find($id);
+        $games->verified = !$games->verified;
+        $games->save();
+        return redirect()->route('admin-toggle');
+    }
+
     public function destroy($id){
-        $review = Review::findOrFail($id);
+        $review = Review::find($id);
         $review-> delete();
         return redirect()->route('admin-reviews');
     }
