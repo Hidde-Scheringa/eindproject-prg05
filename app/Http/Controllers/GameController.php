@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Review;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
@@ -17,12 +18,28 @@ class GameController extends Controller implements HasMiddleware
            new Middleware('auth', except: ['show','index']),
         ];
     }
-    public function index()
+    public function index(Request $request)
     {
-        $games = Game::where('verified', true)->get();
+        $gameQuery = Game::query();
+        $gameQuery->where('verified', true);
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $gameQuery->whereAny(['name', 'publisher'],'LIKE', "%$search%");
+        }
+
+
+        $games = $gameQuery->get();
         return view('loggedin', compact('games'));
     }
 
+    public function inlogHandler(){
+        $games = Game::where('verified', true)->get();
+        if (Auth::user()->admin){
+            return view('admin.dashboard');
+        } else{
+            return view('loggedin',['games' => $games]);
+        }
+    }
     public function show($id){
         $game = Game::find($id);
         $reviews = $game->reviews;

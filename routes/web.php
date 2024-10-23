@@ -11,17 +11,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\EnsureTokenIsValid;
 
 Route::get('/', [IndexController::class, 'index']);
-Route::get('/loggedin', [GameController::class, 'index']);
-
-Route::get('/dashboard', function () {
-    $games = Game::where('verified', true)->get();
-    if (Auth::user()->admin){
-//    dd(Auth::user());
-        return view('admin.dashboard');
-    } else{
-        return view('loggedin',['games' => $games]);
-    }
-})->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [GameController::class, 'index']);
+Route::get('/dashboard', [GameController::class, 'inlogHandler'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
