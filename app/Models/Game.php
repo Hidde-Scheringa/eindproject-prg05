@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Game extends Model
 {
-    use HasFactory;
 
     public static function findOrFail($id)
     {
@@ -16,5 +15,10 @@ class Game extends Model
     public function reviews(): HasMany
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function gameGenres(): HasMany
+    {
+        return $this->hasMany(GameGenre::class);
     }
 }

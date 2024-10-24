@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Genre;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Support\Facades\DB;
 
 class GameController extends Controller implements HasMiddleware
 {
@@ -18,7 +20,7 @@ class GameController extends Controller implements HasMiddleware
            new Middleware('auth', except: ['show','index']),
         ];
     }
-    public function handleDashboard(Request $request)
+    public function index(Request $request)
     {
 
         if (Auth::user()->admin) {
@@ -44,28 +46,36 @@ class GameController extends Controller implements HasMiddleware
     }
 
     public function create(){
-        return view('games.create');
+        $genres = Genre::all();
+        return view('games.create', compact('genres'));
     }
 
 
 
     public function store(Request $request){
-//        $request->validate();
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'publisher' => ['required', 'string', 'max:255'],
-            'cover_image' =>['required', 'string', 'max:1000']
+            'cover_image' =>['required', 'string', 'max:1000'],
+//            'genre'=>['required']
         ]);
 
         $game= new Game();
         $game->name = $request->input('name');
         $game->publisher = $request->input('publisher');
-//        $game->playtime = $request->input('playtime');
         $game->user_id = auth()->user()->id;
         $game->total_playtime = 0;
         $game->cover_image = $request->input('cover_image');
 
         $game->save();
+
+        $genres = $request->input('genre');
+        foreach ($genres as $genreId){
+            DB::table('games_genre')->insert([
+                'games_id'=> $game->id,
+                'genre_id'=> $genreId
+            ]);
+        }
         return redirect()->route('games.index');
     }
 

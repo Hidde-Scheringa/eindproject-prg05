@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\EnsureTokenIsValid;
 
 Route::get('/', [IndexController::class, 'index']);
-Route::get('/dashboard', [GameController::class, 'handleDashboard'])->name('dashboard');
+Route::get('/dashboard', [GameController::class, 'index'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

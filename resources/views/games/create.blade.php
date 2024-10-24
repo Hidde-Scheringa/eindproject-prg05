@@ -7,7 +7,7 @@
         <form action="{{ route('games.store') }}" method="post">
             @csrf
 
-            <!-- Naam Invoerveld -->
+
             <div class="mb-4">
                 <x-input-label for="name">Naam</x-input-label>
                 <x-text-input name="name" id="name"
@@ -26,6 +26,21 @@
                 />
                 @if($errors->has('publisher'))
                     <div class="text-red-500 mt-1">{{ $errors->first('publisher') }}</div>
+                @endif
+            </div>
+
+            <div class="mb-4">
+                <x-input-label for="genre">Genre</x-input-label>
+                    <select name="genre[]" multiple>
+                        <option value="1">Fantasy</option>
+                        <option value="2">Adventure</option>
+                        <option value="3">Simulation</option>
+                        <option value="4">RPG</option>
+                        <option value="5">Sport</option>
+                        <option value="6">Strategy</option>
+                    </select>
+             @if($errors->has('genre'))
+                    <div class="text-red-500 mt-1">{{ $errors->first('genre') }}</div>
                 @endif
             </div>
 
