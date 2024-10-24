@@ -41,6 +41,7 @@
 {{--            <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Speeltijd</th>--}}
             <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Uitgever</th>
             <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Cover Afbeelding</th>
+            <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Genres</th>
             <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Schrijf een review.</th>
         </tr>
         </thead>
@@ -57,13 +58,19 @@
                         </div>
                    </a>
                 </td>
+                <td>
+                    @foreach($game->genres as $genre)
+                        {{ $genre->name }}
+                    @endforeach
+                </td>
                 <td class="border border-gray-300 px-4 py-2">
                     <a href="{{route('review', $game->id)}}">
                         Create review
                     </a>
                 </td>
+                @endforeach
             </tr>
-        @endforeach
+
         </tbody>
     </table>
 </div>

@@ -36,7 +36,8 @@ class GameController extends Controller implements HasMiddleware
 
 
         $games = $gameQuery->get();
-        return view('loggedin', compact('games'));
+        $genres = Genre::all();
+        return view('loggedin', compact('games', 'genres'));
     }
     public function show($id){
         $game = Game::find($id);
