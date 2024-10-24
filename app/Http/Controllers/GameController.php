@@ -57,7 +57,7 @@ class GameController extends Controller implements HasMiddleware
             'name' => ['required', 'string', 'max:255'],
             'publisher' => ['required', 'string', 'max:255'],
             'cover_image' =>['required', 'string', 'max:1000'],
-//            'genre'=>['required']
+            'genre'=>['required']
         ]);
 
         $game= new Game();
