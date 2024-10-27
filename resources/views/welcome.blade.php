@@ -67,6 +67,7 @@
 {{--                                    <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Speeltijd</th>--}}
                                     <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Uitgever</th>
                                     <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Cover Afbeelding</th>
+                                    <th class="border border-gray-300 px-4 py-2 text-left text-gray-700">Genres</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -81,6 +82,11 @@
                                                     <img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}" class="w-full h-full object-cover" />
                                                 </div>
                                             </a>
+                                        </td>
+                                        <td>
+                                            @foreach($game->genres as $genre)
+                                                {{ $genre->name }}
+                                            @endforeach
                                         </td>
                                     </tr>
                                 @endforeach

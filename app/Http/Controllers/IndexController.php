@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Genre;
 use Illuminate\Http\Request;
 
 class IndexController extends Controller
@@ -18,6 +19,7 @@ class IndexController extends Controller
 
 
         $games = $gameQuery->get();
-        return view('welcome', compact('games'));
+        $genres = Genre::all();
+        return view('welcome', compact('games', 'genres'));
     }
 }

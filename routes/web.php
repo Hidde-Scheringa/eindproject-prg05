@@ -12,6 +12,7 @@ use App\Http\Middleware\EnsureTokenIsValid;
 
 Route::get('/', [IndexController::class, 'index']);
 Route::get('/dashboard', [GameController::class, 'index'])->name('dashboard');
+Route::get('/dashboard/genre/{genre_id}', [GameController::class, 'genreFilter'])->name('games.genrefilter');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
