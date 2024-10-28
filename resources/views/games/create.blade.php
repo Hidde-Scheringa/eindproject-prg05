@@ -31,7 +31,7 @@
 
             <div class="mb-4">
                 <x-input-label for="genre">Genre</x-input-label>
-                    <select name="genre[]" multiple>
+                    <select name="genre[]">
                         <option value="1">Fantasy</option>
                         <option value="2">Adventure</option>
                         <option value="3">Simulation</option>
