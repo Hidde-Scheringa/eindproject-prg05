@@ -44,7 +44,7 @@
                 @endif
             </div>
 
-            <!-- Cover Art Invoerveld -->
+
             <div class="mb-4">
                 <x-input-label for="cover_image">Cover Art</x-input-label>
                 <x-text-input name="cover_image" id="cover_image"
@@ -55,7 +55,7 @@
                 @endif
             </div>
 
-            <!-- Verstuur Knop -->
+
             <div class="flex justify-center">
                 <x-primary-button type="submit" class="bg-gray-800 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition duration-200">
                     Maak aan

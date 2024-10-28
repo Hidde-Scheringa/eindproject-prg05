@@ -51,8 +51,6 @@ class GameController extends Controller implements HasMiddleware
         return view('games.create', compact('genres'));
     }
 
-
-
     public function store(Request $request){
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -77,6 +75,27 @@ class GameController extends Controller implements HasMiddleware
                 'genre_id'=> $genreId
             ]);
         }
+        return redirect()->route('games.index');
+    }
+
+    public function edit(Game $game){
+        $activeGenre = $game->genres->pluck('id')->toArray();
+        return view('games.edit', compact('game','activeGenre'));
+    }
+
+    public function update(Request $request, Game $game){
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'publisher' => ['required', 'string', 'max:255'],
+            'cover_image' =>['required', 'string', 'max:1000'],
+            'genre'=>['required'],
+        ]);
+
+        $game->name = $request->input('name');
+        $game->publisher = $request->input('publisher');
+        $game->cover_image = $request->input('cover_image');
+        $game->save();
+
         return redirect()->route('games.index');
     }
 
