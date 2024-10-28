@@ -22,4 +22,15 @@ class IndexController extends Controller
         $genres = Genre::all();
         return view('welcome', compact('games', 'genres'));
     }
+
+
+    public function genreFilter($genre_id){
+        $games= Game::whereHas('genres', function ($query)use ($genre_id) {
+            $query->where('genres.id', $genre_id);
+        })->get();
+
+        $genres = Genre::all();
+        return view('welcome', compact('games', 'genres'));
+    }
+
 }

@@ -18,6 +18,6 @@ class EnsureUserIsAdmin
         if (auth()->check() && auth()->user()->isAdmin()) {
             return $next($request);
         }
-        return redirect('/')->with('error','Je hebt niet de rechten voor deze pagina');
+        return redirect('/dashboard')->with('error','Je hebt niet de rechten voor deze pagina');
     }
 }

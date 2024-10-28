@@ -16,7 +16,7 @@
 </div>
 
 <div class="container mx-auto py-10">
-    <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6">Welkom bij je dashboard! Hier kun je je spellen beheren.</h2>
+    <h2 class="text-2xl font-semibold text-center text-gray-700 mb-6">Welkom bij je dashboard! Hier kun je jouw spellen beheren.</h2>
 
     <form class="max-w-lg mx-auto my-10">
         @csrf
@@ -27,7 +27,7 @@
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 19l-4-4m0-7a7 7 0 1 1-14 0 7 7 0 0 1 14 0Z"/>
                 </svg>
             </div>
-            <input type="search" id="search" name="search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Game name or publisher" required /> <!-- Placeholder aangepast -->
+            <input type="search" id="search" name="search" class="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-800 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Game name or publisher" required />
             <button type="submit" class="absolute right-2.5 bottom-2.5 bg-blue-600 text-white hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
         </div>
     </form>
@@ -41,13 +41,15 @@
             </a>
         </div>
 
-
-    @foreach($genres as $genre)
+        @foreach($genres as $genre)
             <a href="{{ route('games.genrefilter', ['genre_id' => $genre->id]) }}">
                 <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200">{{ $genre->name }}</button>
             </a>
         @endforeach
-        <a href="{{ route('games.create') }}" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition duration-200">Create game</a>
+
+        <a href="{{ route('games.create') }}">
+            <button type="button" class="bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition duration-200">Create game</button>
+        </a>
     </div>
 
     <!-- Games Grid -->
@@ -56,7 +58,7 @@
             <div class="bg-white rounded-lg shadow-lg overflow-hidden">
                 <a href="{{ route('games.show', $game->id) }}">
                     <div class="w-full h-85">
-                        <img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}" class="w-full h-full object-cover"> <!-- object-cover zorgt ervoor dat de afbeelding goed schaalt -->
+                        <img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}" class="w-full h-full object-cover">
                     </div>
                 </a>
                 <div class="p-4">
@@ -72,7 +74,7 @@
                         Schrijf een review
                     </a>
                     @if ($game->user_id === auth()->id())
-                        <a href="{{ route('games.edit', $game->id) }}" class="mt-2 inline-block bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-200">
+                        <a href="{{ route('games.edit', $game->id) }}" class="mt-2 inline-block bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition duration-200">
                             Edit deze game
                         </a>
                     @endif

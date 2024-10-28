@@ -4,22 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Game;
 use App\Models\Genre;
-use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Support\Facades\DB;
 
-class GameController extends Controller implements HasMiddleware
+
+class GameController extends Controller
 {
-    public static function middleware(): array
-    {
-        return [
-            'auth',
-           new Middleware('auth', except: ['show','index']),
-        ];
-    }
     public function index(Request $request)
     {
 
@@ -115,7 +106,7 @@ class GameController extends Controller implements HasMiddleware
         })->get();
 
         $genres = Genre::all();
-        return view('loggedin', compact('games', 'genres'));
+        return view('', compact('games', 'genres'));
     }
 }
 

@@ -7,9 +7,6 @@
         <!-- Cover image is now set to half-width -->
         <img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}" class="w-1/2 h-auto mx-auto rounded-lg mb-4">
 
-        <p class="text-lg text-gray-700 mb-2">
-            Speeltijd: <span class="font-semibold text-blue-600">{{ $game->playtime }} uur</span>
-        </p>
         <p class="text-lg text-gray-700 mb-4">
             Uitgever: <span class="font-semibold text-blue-600">{{ $game->publisher }}</span>
         </p>
