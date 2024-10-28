@@ -79,11 +79,21 @@ class GameController extends Controller implements HasMiddleware
     }
 
     public function edit(Game $game){
+
+        if ($game->user_id !== auth()->id()) {
+            return redirect()->route('games.index')->with('error', 'Je hebt geen toestemming om deze game te bewerken.');
+        }
+
         $activeGenre = $game->genres->pluck('id')->toArray();
         return view('games.edit', compact('game','activeGenre'));
     }
 
     public function update(Request $request, Game $game){
+
+        if ($game->user_id !== auth()->id()) {
+            return redirect()->route('games.index')->with('error', 'Je hebt geen toestemming om deze game te bewerken.');
+        }
+
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'publisher' => ['required', 'string', 'max:255'],

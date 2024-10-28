@@ -62,9 +62,11 @@
                     <a href="{{ route('review', $game->id) }}" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200">
                         Schrijf een review
                     </a>
-                    <a href="{{route('games.edit', $game->id)}}">
-                        Edit deze game
-                    </a>
+                    @if ($game->user_id === auth()->id())
+                        <a href="{{ route('games.edit', $game->id) }}" class="mt-2 inline-block bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600 transition duration-200">
+                            Edit deze game
+                        </a>
+                    @endif
                 </div>
             </div>
         @endforeach
