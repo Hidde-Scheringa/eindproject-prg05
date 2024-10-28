@@ -33,7 +33,16 @@
     </form>
 
     <div class="flex justify-center space-x-4 mb-8">
-        @foreach($genres as $genre)
+        <div class="mb-4">
+            <a href="{{ route('games.index') }}">
+                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200">
+                    Alle Games
+                </button>
+            </a>
+        </div>
+
+
+    @foreach($genres as $genre)
             <a href="{{ route('games.genrefilter', ['genre_id' => $genre->id]) }}">
                 <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200">{{ $genre->name }}</button>
             </a>
@@ -54,7 +63,7 @@
                     <h3 class="text-lg font-semibold text-gray-800">{{ $game->name }}</h3>
                     <p class="text-gray-600 mt-1">Uitgever: {{ $game->publisher }}</p>
                     <div class="mt-2 text-sm text-gray-500">
-                        Genres:
+                        Genre:
                         @foreach($game->genres as $genre)
                             <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2">{{ $genre->name }}</span>
                         @endforeach
