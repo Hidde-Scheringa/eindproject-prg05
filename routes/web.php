@@ -24,7 +24,7 @@ Route::middleware('auth')->group(function () {
 
 
 
-Route::resource('games', GameController::class)->middleware('auth');;
+Route::resource('games', GameController::class)->middleware('auth');
 Route::get('games/{game}', [GameController::class, 'show'])->name('games.show');
 
 Route::get('{game}/review', [ReviewController::class, 'review'])->name('review')->middleware('auth');

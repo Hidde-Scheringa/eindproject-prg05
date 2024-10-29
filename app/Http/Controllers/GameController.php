@@ -118,7 +118,11 @@ class GameController extends Controller
         })->get();
 
         $genres = Genre::all();
-        return view('', compact('games', 'genres'));
+
+        $postCount = Game::where('user_id', Auth::id())->count();
+        $userCanEdit = $postCount >= 5;
+
+        return view('loggedin', compact('games', 'genres', 'userCanEdit'));
     }
 }
 
