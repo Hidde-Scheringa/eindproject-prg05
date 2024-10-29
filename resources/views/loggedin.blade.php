@@ -73,7 +73,7 @@
                     <a href="{{ route('review', $game->id) }}" class="mt-4 inline-block bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200">
                         Schrijf een review
                     </a>
-                    @if ($game->user_id === auth()->id())
+                    @if ($game->user_id === auth()->id() && $userCanEdit)
                         <a href="{{ route('games.edit', $game->id) }}" class="mt-2 inline-block bg-purple-500 text-white px-4 py-2 rounded-lg hover:bg-purple-600 transition duration-200">
                             Edit deze game
                         </a>
