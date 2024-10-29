@@ -4,8 +4,17 @@
     <div class="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
         <h1 class="text-3xl font-bold text-center text-blue-600 mb-4">{{ $game->name }}</h1>
 
-        <!-- Cover image is now set to half-width -->
-        <img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}" class="w-1/2 h-auto mx-auto rounded-lg mb-4">
+        @if(Auth::check())
+            <a href="{{ route('games.index') }}" class=" text-white font-semibold py-2 px-4 rounded transition duration-200">
+                <img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}" class="w-1/2 h-auto mx-auto rounded-lg mb-4">
+            </a>
+        @else
+            <a href="{{ route('index') }}" class=" text-white font-semibold py-2 px-4 rounded transition duration-200">
+                <img src="{{ $game->cover_image }}" alt="Cover Image of {{ $game->name }}" class="w-1/2 h-auto mx-auto rounded-lg mb-4">
+            </a>
+        @endif
+
+
 
         <p class="text-lg text-gray-700 mb-4">
             Uitgever: <span class="font-semibold text-blue-600">{{ $game->publisher }}</span>

@@ -33,4 +33,16 @@ class AdminController extends Controller
         $review-> delete();
         return redirect()->route('admin-reviews');
     }
+
+    public function deleteGame($id){
+        $game = Game::find($id);
+        $game-> delete();
+        return redirect()->route('admin-toggle');
+    }
+
+    public function dashboard()
+    {
+        return view('admin.dashboard');
+    }
+
 }

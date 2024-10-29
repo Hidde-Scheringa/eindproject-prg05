@@ -17,8 +17,8 @@
 
 <div class="container mx-auto my-10">
     <div class="text-center mb-6">
-        <h2 class="text-2xl font-semibold text-gray-800">Beheer je content</h2>
-        <p class="text-gray-600">Gebruik de onderstaande links om toegang te krijgen tot verschillende beheermogelijkheden.</p>
+        <h2 class="text-2xl font-semibold text-gray-800">Beheer de content</h2>
+        <p class="text-gray-600">Gebruik de onderstaande knoppen om toegang te krijgen tot verschillende beheermogelijkheden.</p>
     </div>
 
     <div class="flex justify-center space-x-4">
