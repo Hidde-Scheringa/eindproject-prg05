@@ -14,8 +14,6 @@
             </a>
         @endif
 
-
-
         <p class="text-lg text-gray-700 mb-4">
             Uitgever: <span class="font-semibold text-blue-600">{{ $game->publisher }}</span>
         </p>

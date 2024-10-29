@@ -33,6 +33,7 @@ Route::post('{game}/review', [ReviewController::class, 'store'])->name('reviews.
 Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard')->middleware([EnsureUserIsAdmin::class]);
 Route::get('/admin-reviews', [AdminController::class, 'show'])->name('admin-reviews')->middleware([EnsureUserIsAdmin::class]);
 Route::delete('/admin-reviews/{id}',[AdminController::class, 'destroy'])->name('admin-reviews.destroy')->middleware([EnsureUserIsAdmin::class]);
+
 Route::get('/postmanager',[AdminController::class, 'gameManager'])->name('admin-toggle')->middleware([EnsureUserIsAdmin::class]);
 Route::post('/postmanager/{id}',[AdminController::class, 'toggleVerified'])->name('admin.post-manager')->middleware([EnsureUserIsAdmin::class]);
 Route::delete('/postmanager/{id}', [AdminController::class, 'deleteGame'])->name('admin-games.destroy')->middleware([EnsureUserIsAdmin::class]);

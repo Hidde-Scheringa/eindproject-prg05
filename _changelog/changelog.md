@@ -96,3 +96,23 @@ toen ik hierop uitkwam Querying Relationship Existence.
 hier kan je resultaten limiteren op basis van relaties tussen tabellen.
 Ik had wereHas nodig omdat ik meerdere genre_id's had. en has werkt alleen als je wilt zoeken op games die minstens 1 genre hadden, en dat heeft elke game dus dat zou niet gewerkt hebben.
 Dit werkte als een gegoten en na het maken van de functie heb ik de styling aangepast zodat het er wat fijner uitziet.
+
+## Maandag 28-10-2024
+
+Een edit page gemaakt waar de eigenaar van de post deze zou kunnen aanpassen als dat nodig is.
+Ik heb dit gedaan door een check te maken met een if statement. Deze if checkt of de post bij de user hoort via de user_id.
+De form wordt gevuld met de oude data, zodat de gebruiker deze makkelijk kan bijwerken.
+Ik heb validatie in deze form gebruikt zodat er geen veld overgeslagen kan worden.
+na het versturen van de form is er een redirect die je terug stuurt naar de /dashboard.
+door middel van een if in de loggedin view ziet alleen de user die de post heeft gemaakt de knop om de game te kunnen wijzigen.
+Een gebruiker ziet deze knop niet in de dashboard staan.
+Naast een edit pagina heb ik een unfilter knop gemaakt die alle games weer terug haalt als de gebruiker klaar is met het gekozen filter. Deze knop werkt zowel voor 
+de searchbar als de genre knoppen.
+
+## Dinsdag 29-10-2024
+Ik heb diepere validatie gemaakt voor het editen van een game. Een gebruiker kan nu niet gelijk na het maken van een game deze wijzigen.
+De gebruiker moet eerst 5 games hebben gemaakt die zijn goedgekeurd door de admin voordat de edit knop verschijnt.
+Dit heb ik gedaan door middel van een query, die count hoeveel posts er zijn onder die query heb ik een if gezet dat alles onder 5 geen edit kan maken.
+Ik heb in de index een if functie gemaakt die zegt dat als de count hoger is dan 5 de knop verschijnt.
+deze variable userCanEdit heb ik door middel van && in de if gezet van de loggedin view.
+Ik heb buiten diepere validatie knoppen gemaakt zodat de navigatie voor de gebruiker en admin beter is. 
