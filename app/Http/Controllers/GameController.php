@@ -29,7 +29,7 @@ class GameController extends Controller
         $games = $gameQuery->get();
         $genres = Genre::all();
 
-        $postCount = Game::where('user_id', Auth::id())->count();
+        $postCount = Game::where('user_id', Auth::id())->where('verified', true)->count();
         $userCanEdit = $postCount >= 5;
 
         return view('loggedin', compact('games', 'genres', 'userCanEdit'));
@@ -92,7 +92,7 @@ class GameController extends Controller
             return redirect()->route('games.index')->with('error', 'Je hebt geen toestemming om deze game te bewerken.');
         }
 
-        $postCount = Game::where('user_id', auth()->id())->count();
+        $postCount = Game::where('user_id', auth()->id())->where('verified', true)->count();
         if ($postCount < 5) {
             return redirect()->route('games.index')->with('error', 'Je moet minstens 5 games hebben aangemaakt om deze te mogen bewerken.');
         }
@@ -119,7 +119,7 @@ class GameController extends Controller
 
         $genres = Genre::all();
 
-        $postCount = Game::where('user_id', Auth::id())->count();
+        $postCount = Game::where('user_id', Auth::id())->where('verified', true)->count();
         $userCanEdit = $postCount >= 5;
 
         return view('loggedin', compact('games', 'genres', 'userCanEdit'));
