@@ -33,11 +33,14 @@ Route::get('games/create', [GameController::class, 'create'])->name('games.creat
 Route::get('{game}/review', [ReviewController::class, 'review'])->name('review')->middleware('auth');
 Route::post('{game}/review', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
 
-Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard')->middleware([EnsureUserIsAdmin::class]);
-Route::get('/admin-reviews', [AdminController::class, 'show'])->name('admin-reviews')->middleware([EnsureUserIsAdmin::class]);
-Route::delete('/admin-reviews/{id}',[AdminController::class, 'destroy'])->name('admin-reviews.destroy')->middleware([EnsureUserIsAdmin::class]);
+Route::middleware([EnsureUserIsAdmin::class])->group(function () {
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/admin-reviews', [AdminController::class, 'show'])->name('admin-reviews');
+    Route::delete('/admin-reviews/{id}',[AdminController::class, 'destroy'])->name('admin-reviews.destroy');
 
-Route::get('/postmanager',[AdminController::class, 'gameManager'])->name('admin-toggle')->middleware([EnsureUserIsAdmin::class]);
-Route::post('/postmanager/{id}',[AdminController::class, 'toggleVerified'])->name('admin.post-manager')->middleware([EnsureUserIsAdmin::class]);
-Route::delete('/postmanager/{id}', [AdminController::class, 'deleteGame'])->name('admin-games.destroy')->middleware([EnsureUserIsAdmin::class]);
+    Route::get('/postmanager',[AdminController::class, 'gameManager'])->name('admin-toggle');
+    Route::post('/postmanager/{id}',[AdminController::class, 'toggleVerified'])->name('admin.post-manager');
+    Route::delete('/postmanager/{id}', [AdminController::class, 'deleteGame'])->name('admin-games.destroy');
+});
+
 require __DIR__.'/auth.php';
