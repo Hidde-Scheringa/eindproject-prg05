@@ -15,9 +15,14 @@ class EnsureUserIsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->isAdmin()) {
-            return $next($request);
+        if (!auth()->check()) {
+            return redirect('/')->with('error', 'Je moet ingelogd zijn om deze pagina te bekijken.');
         }
-        return redirect('/dashboard')->with('error','Je hebt niet de rechten voor deze pagina');
+
+        if (!auth()->user()->isAdmin()) {
+            return redirect('/dashboard')->with('error', 'Je hebt niet de rechten voor deze pagina');
+        }
+        return $next($request);
     }
+
 }

@@ -10,8 +10,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\EnsureUserIsAdmin;
 
+
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/games/genre/{genre_id}', [IndexController::class, 'genreFilter'])->name('genrefilter');
+
+
 
 Route::get('/dashboard', [GameController::class, 'index'])->name('dashboard');
 Route::get('/dashboard/genre/{genre_id}', [GameController::class, 'genreFilter'])->name('games.genrefilter');
@@ -26,6 +29,8 @@ Route::middleware('auth')->group(function () {
 
 Route::resource('games', GameController::class)->middleware('auth');
 Route::get('games/{game}', [GameController::class, 'show'])->name('games.show');
+
+
 
 Route::get('{game}/review', [ReviewController::class, 'review'])->name('review')->middleware('auth');
 Route::post('{game}/review', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
