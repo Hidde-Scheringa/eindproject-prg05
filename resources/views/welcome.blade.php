@@ -7,7 +7,7 @@
             <div class="flex space-x-4">
                 @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="bg-gray-700 text-white rounded-md px-3 py-2 transition hover:bg-gray-600">Dashboard</a>
+                        <a href="{{ url('/games') }}" class="bg-gray-700 text-white rounded-md px-3 py-2 transition hover:bg-gray-600">Dashboard</a>
                     @else
                         <a href="{{ route('login') }}" class="bg-gray-700 text-white px-4 py-2 rounded hover:bg-gray-600 transition duration-200">Log in</a>
                         @if (Route::has('register'))
@@ -39,7 +39,7 @@
     <div class="flex justify-center space-x-4 mb-8">
 
         <div class="mb-4">
-            <a href="{{ route('index') }}">
+            <a href="{{ route('games.index') }}">
                 <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-200">
                     Alle Games
                 </button>

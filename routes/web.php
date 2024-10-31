@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\EnsureUserIsAdmin;
 use App\Http\Middleware\EnsureAdminIsNotUser;
+use App\Http\Middleware\EnsureUserCanEdit;
 
 
 Route::get('/', [IndexController::class, 'index'])->name('index');
@@ -21,7 +22,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('games', GameController::class)->middleware([EnsureAdminIsNotUser::class]);
+
+
+    Route::resource('games', GameController::class)->middleware([EnsureAdminIsNotUser::class])->middleware([EnsureUserCanEdit::class]);
+
 });
 Route::get('games/{game}', [GameController::class, 'show'])->name('games.show')->middleware([EnsureAdminIsNotUser::class]);
 
