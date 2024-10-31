@@ -14,10 +14,6 @@ class GameController extends Controller
     public function index(Request $request)
     {
 
-        if (Auth::user()->admin) {
-            return view('admin.dashboard');
-        }
-
         $gameQuery = Game::query();
         $gameQuery->where('verified', true);
         if ($request->filled('search')) {
