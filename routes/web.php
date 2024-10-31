@@ -28,8 +28,7 @@ Route::middleware('auth')->group(function () {
 
 });
 Route::get('games/{game}', [GameController::class, 'show'])->name('games.show')->middleware([EnsureAdminIsNotUser::class]);
-
-
+Route::get('games/create', [GameController::class, 'create'])->name('games.create')->middleware([EnsureAdminIsNotUser::class]);
 
 Route::get('{game}/review', [ReviewController::class, 'review'])->name('review')->middleware('auth');
 Route::post('{game}/review', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
