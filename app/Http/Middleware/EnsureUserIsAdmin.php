@@ -20,7 +20,7 @@ class EnsureUserIsAdmin
         }
 
         if (!auth()->user()->isAdmin()) {
-            return redirect('/dashboard')->with('error', 'Je hebt niet de rechten voor deze pagina');
+            return redirect('/games')->with('error', 'Je hebt niet de rechten voor deze pagina');
         }
         return $next($request);
     }

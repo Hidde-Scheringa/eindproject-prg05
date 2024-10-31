@@ -15,9 +15,6 @@ use App\Http\Middleware\EnsureAdminIsNotUser;
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/games/genre/{genre_id}', [IndexController::class, 'genreFilter'])->name('genrefilter');
 
-
-
-Route::get('/dashboard', [GameController::class, 'index'])->name('dashboard')->middleware([EnsureAdminIsNotUser::class]);
 Route::get('/dashboard/genre/{genre_id}', [GameController::class, 'genreFilter'])->name('games.genrefilter');
 
 Route::middleware('auth')->group(function () {
