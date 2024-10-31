@@ -13,6 +13,9 @@ class GameController extends Controller
 {
     public function index(Request $request)
     {
+        if (auth()->user()->isAdmin()) {
+            return redirect('/admin/dashboard')->with('error', 'Je hebt niet de rechten voor deze pagina');
+        }
 
         $gameQuery = Game::query();
         $gameQuery->where('verified', true);
