@@ -116,3 +116,19 @@ Dit heb ik gedaan door middel van een query, die count hoeveel posts er zijn ond
 Ik heb in de index een if functie gemaakt die zegt dat als de count hoger is dan 5 de knop verschijnt.
 deze variable userCanEdit heb ik door middel van && in de if gezet van de loggedin view.
 Ik heb buiten diepere validatie knoppen gemaakt zodat de navigatie voor de gebruiker en admin beter is. 
+
+## Donderdag 31-10-2024
+Ik Dacht dat ik klaar was met de opdracht, maar na een testrun van alle onderdelen, kwam ik erachter dat ik nog wat minor buggs had.
+het grootste probleem was dat ik nog best veel gebruik kon maken van deeplinken. Als admin kon je makkelijk deeplinken naar pagina's van een gewone ingelogde gebruiker.
+Dus ik heb een middleware gemaakt waarin dit niet meer kan. Deze middleware checkt of een gebruiker een admin is, en als het een admin is wordt het terug gestuurd naar de /admin/dashboard.
+Deze middleware heb ik toegepast op routes die alleen gebruikt mogen worden door ingelogde niet admins.
+Ik maak gebruik van de resource route, maar ik had ook een index route. Die was compleet overbodig aangezien die standaard in de reource route zit. Dus die route heb ik verwijderd.
+Ook kon je nog deeplinken naar de edit pagina, wat niet mag, dus daar heb ik ook een losse middleware gemaakt, waar wordt gecheckt of een user meer dan 5 posts heeft gemaakt.
+Zoniet dat wordt je terug gestuurd naar de /games pagina. En deze middleware heb ik toegepast op de resource route.
+En als laatst waren er nog wat kleine buggs die gefixt zijn.
+
+## Vrijdag 1-11-2024
+Wederom heb ik deeplinken verbetert maar nu in de zin van layout in de web.php.
+Het was wat chaotisch en minder leesbaar, ik heb het beter leesbaar gemaakt.
+Ik heb de searchbar in een component gezet aangezien ik deze op meerdere pagina's gebruik, zodat als er veranderingen aan moeten gebeuren dit op 1 plek kan.
+
