@@ -106,6 +106,7 @@ class GameController extends Controller
         $game->name = $request->input('name');
         $game->publisher = $request->input('publisher');
         $game->cover_image = $request->input('cover_image');
+        $game->genres()->sync($request->input('genre'));
         $game->save();
 
         return redirect()->route('games.index');
