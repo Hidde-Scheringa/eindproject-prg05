@@ -12,27 +12,40 @@ use App\Http\Middleware\EnsureUserIsAdmin;
 use App\Http\Middleware\EnsureAdminIsNotUser;
 use App\Http\Middleware\EnsureUserCanEdit;
 
-
+//Index routes
 Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/games/genre/{genre_id}', [IndexController::class, 'genreFilter'])->name('genrefilter');
 
-Route::get('/dashboard/genre/{genre_id}', [GameController::class, 'genreFilter'])->name('games.genrefilter');
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-
+//    de games routes
     Route::resource('games', GameController::class)->middleware([EnsureAdminIsNotUser::class])->middleware([EnsureUserCanEdit::class]);
+    Route::get('games/create', [GameController::class, 'create'])->name('games.create')->middleware([EnsureAdminIsNotUser::class]);
+    Route::get('/dashboard/genre/{genre_id}', [GameController::class, 'genreFilter'])->name('games.genrefilter')->middleware([EnsureAdminIsNotUser::class]);
 
+    //Review routes
+    Route::get('{game}/review', [ReviewController::class, 'review'])->name('review')->middleware([EnsureAdminIsNotUser::class]);
+    Route::post('{game}/review', [ReviewController::class, 'store'])->name('reviews.store')->middleware([EnsureAdminIsNotUser::class]);
 });
+
+//losse games route voor de show die uit de auth middleware is
 Route::get('games/{game}', [GameController::class, 'show'])->name('games.show')->middleware([EnsureAdminIsNotUser::class]);
-Route::get('games/create', [GameController::class, 'create'])->name('games.create')->middleware([EnsureAdminIsNotUser::class]);
 
-Route::get('{game}/review', [ReviewController::class, 'review'])->name('review')->middleware('auth');
-Route::post('{game}/review', [ReviewController::class, 'store'])->name('reviews.store')->middleware('auth');
 
+//Review routes
+
+    Route::get('{game}/review', [ReviewController::class, 'review'])->name('review')->middleware([EnsureAdminIsNotUser::class]);
+    Route::post('{game}/review', [ReviewController::class, 'store'])->name('reviews.store')->middleware([EnsureAdminIsNotUser::class]);
+
+
+
+
+//admin routes
 Route::middleware([EnsureUserIsAdmin::class])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
     Route::get('/admin-reviews', [AdminController::class, 'show'])->name('admin-reviews');
